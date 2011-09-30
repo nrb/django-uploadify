@@ -21,7 +21,9 @@ function allComplete(event, data) {
         'filesUploaded': data.filesUploaded,
         'errorCount': data.errors,
         'allBytesLoaded': data.allBytesLoaded,
-        'speed': data.speed
+        'speed': data.speed,
+        '{{ cookie_name }}': '{{ cookie_value }}',
+        'csrfmiddlewaretoken': '{{ csrf_token }}',
     });
     // Raise custom event
     $('#uploadify').trigger('allUploadsComplete', data);
