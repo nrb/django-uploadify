@@ -4,12 +4,14 @@
 <script type="text/javascript">// <![CDATA[
 $(document).ready(function() {
 $('#fileInput').uploadify({
-'uploader'  : '{{ uploadify_path }}uploadify.swf',
-'script'    : '{% url uploadify_upload %}',
-'cancelImg' : '{{ uploadify_path }}cancel.png',
-'auto'      : true,
-'folder'    : '{{ upload_path }}',
-'multi'     : true,
+'uploader'      : '{{ uploadify_path }}uploadify.swf',
+'script'        : '{% url uploadify_upload %}',
+'cancelImg'     : '{{ uploadify_path }}cancel.png',
+'auto'          : true,
+'folder'        : '{{ upload_path }}',
+'multi'         : true,
+'scriptData'    : {'csrfmiddlewaretoken': '{{ csrf_token }}',
+                   '{{ cookie_name }}': '{{ cookie_value}}'},
 'onAllComplete' : allComplete
 });
 });
@@ -19,7 +21,9 @@ function allComplete(event, data) {
         'filesUploaded': data.filesUploaded,
         'errorCount': data.errors,
         'allBytesLoaded': data.allBytesLoaded,
-        'speed': data.speed
+        'speed': data.speed,
+        '{{ cookie_name }}': '{{ cookie_value }}',
+        'csrfmiddlewaretoken': '{{ csrf_token }}',
     });
     // Raise custom event
     $('#uploadify').trigger('allUploadsComplete', data);

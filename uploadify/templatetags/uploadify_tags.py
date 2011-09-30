@@ -1,5 +1,6 @@
 from django import template
-from uploadify import settings
+from django.conf import settings
+from uploadify import settings as u_settings
 
 register = template.Library()
 
@@ -20,6 +21,8 @@ def multi_file_upload(context, upload_complete_url):
     """
     return { 
         'upload_complete_url' : upload_complete_url,
-        'uploadify_path' : settings.UPLOADIFY_PATH,
-        'upload_path' : settings.UPLOADIFY_UPLOAD_PATH,
+        'uploadify_path' : u_settings.UPLOADIFY_PATH,
+        'upload_path' : u_settings.UPLOADIFY_UPLOAD_PATH,
+        'cookie_name' :  settings.SESSION_COOKIE_NAME,
+        'cookie_value' : context['request'].COOKIES[settings.SESSION_COOKIE_NAME],
     }
