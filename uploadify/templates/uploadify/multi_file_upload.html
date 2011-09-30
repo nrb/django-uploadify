@@ -10,7 +10,7 @@ $('#fileInput').uploadify({
 'auto'          : true,
 'folder'        : '{{ upload_path }}',
 'multi'         : true,
-'scriptData'    : {'csrfmiddlewaretoken': '{{ csrf_token }}'}
+'scriptData'    : {'csrfmiddlewaretoken': '{{ csrf_token }}'},
 'onAllComplete' : allComplete
 });
 });
