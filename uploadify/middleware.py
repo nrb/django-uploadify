@@ -13,7 +13,7 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 
 
-class SWFUploadMiddleware(object):
+class UploadifyCSRFMiddleware(object):
 
     def process_request(self, request):
         
