@@ -24,5 +24,5 @@ def multi_file_upload(context, upload_complete_url):
         'uploadify_path' : u_settings.UPLOADIFY_PATH,
         'upload_path' : u_settings.UPLOADIFY_UPLOAD_PATH,
         'cookie_name' :  settings.SESSION_COOKIE_NAME,
-        'cookie_value' : context['request'][settings.SESSION_COOKIE_NAME],
+        'cookie_value' : context['request'].COOKIES[settings.SESSION_COOKIE_NAME],
     }
