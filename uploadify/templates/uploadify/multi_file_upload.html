@@ -4,12 +4,13 @@
 <script type="text/javascript">// <![CDATA[
 $(document).ready(function() {
 $('#fileInput').uploadify({
-'uploader'  : '{{ uploadify_path }}uploadify.swf',
-'script'    : '{% url uploadify_upload %}',
-'cancelImg' : '{{ uploadify_path }}cancel.png',
-'auto'      : true,
-'folder'    : '{{ upload_path }}',
-'multi'     : true,
+'uploader'      : '{{ uploadify_path }}uploadify.swf',
+'script'        : '{% url uploadify_upload %}',
+'cancelImg'     : '{{ uploadify_path }}cancel.png',
+'auto'          : true,
+'folder'        : '{{ upload_path }}',
+'multi'         : true,
+'scriptData'    : {'csrfmiddlewaretoken': {% csrf_token %}}
 'onAllComplete' : allComplete
 });
 });
