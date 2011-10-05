@@ -12,9 +12,16 @@ $('#fileInput').uploadify({
 'multi'         : true,
 'scriptData'    : {'csrfmiddlewaretoken': '{{ csrf_token }}',
                    '{{ cookie_name }}': '{{ cookie_value}}'},
+'onComplete'    : complete,
 'onAllComplete' : allComplete
 });
 });
+
+var filesCreated = [];
+
+function complete(event, queueId, file, response, data) {
+    filesCreated.push(file.name);
+}
 
 function allComplete(event, data) {
     $('#uploadify').load('{{ upload_complete_url }}', {
@@ -24,6 +31,7 @@ function allComplete(event, data) {
         'speed': data.speed,
         '{{ cookie_name }}': '{{ cookie_value }}',
         'csrfmiddlewaretoken': '{{ csrf_token }}',
+        'filesCreated': filesCreated,
     });
     // Raise custom event
     $('#uploadify').trigger('allUploadsComplete', data);
